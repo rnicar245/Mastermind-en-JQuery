@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mastermind</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/mastermind.js"></script>
+    <script src="js/entornoGrafico.js"></script>
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<noscript>
+
+  <p>Active JavaScript</p>
+</noscript>
+
+
+<main>
+  <div id="modal" class="modal">
+    <div class="contenido">
+      <p>¿Quieres jugar de nuevo?</p>
+      <div id="botones">
+        <button class="reiniciar">Sí</button>
+        <button id="cancelarFuncionalidad">No</button>
+      </div>
+    </div>
+  
+  </div>
+  <div id="mastermind">
+    <div class= "contenedor" id="contenedor">
+      <div class="seleccion" id="seleccion">
+        <img class="eleccion" src="img/vacio.png"></img>
+        <img class="eleccion" src="img/vacio.png"></img>
+        <img class="eleccion" src="img/vacio.png"></img>
+        <img class="eleccion" src="img/vacio.png"></img>
+      </div>
+      <div class="pistas" id="pistas">
+        <img class="pista" src="img/vacio.png"></img>
+        <img class="pista" src="img/vacio.png"></img>
+        <img class="pista" src="img/vacio.png"></img>
+        <img class="pista" src="img/vacio.png"></img>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="barraSeleccion">
+    <div id="colores">
+      <p>Intentos</p>
+      <p id="intentos">0</p>
+      <img class="color" src="img/verde.png"></img>
+      <img class="color" src="img/amarillo.png"></img>
+      <img class="color" src="img/azul.png"></img>
+      <img class="color" src="img/rojo.png"></img>
+      <img class="color" src="img/marron.png"></img>
+      <img class="color" src="img/naranja.png"></img>
+      <img class="color" src="img/blanco.png"></img>
+      <img class="color" src="img/negro.png"></img>
+      <img id="comprobar" src="img/comprobar.png"></img>
+      <img class="reiniciar" src="img/reiniciar.png"></img>
+    </div>
+  </div>
+</main>
+</body>
+  

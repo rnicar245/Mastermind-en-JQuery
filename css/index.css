@@ -1,0 +1,90 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+p{
+    text-align: center;
+    font-size: 24px;
+}
+#mastermind{
+    align-self: flex-end;
+    background-color: rgb(51, 128, 51);
+}
+
+
+#barraSeleccion{
+    border: 1px solid black;
+    width: min-content;
+    background-color: rgb(188, 255, 188);
+}
+
+#seleccion{
+    display: flex;
+    border: 1px solid black;
+}
+
+#pistas{
+    display: flex;
+    border: 1px solid black;
+    align-items: center;
+    background-color: rgb(99, 144, 99);
+}
+
+#seleccion img{
+    max-height: 75px;
+    max-width: 75px;
+}
+
+#colores img{
+    max-height: 75px;
+    max-width: 75px;
+}
+
+
+#pistas img{
+    max-height: 25px;
+    max-width: 25px;
+}
+
+
+#contenedor{
+    display: flex;
+}
+
+main{
+    display: flex;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 25%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: black; /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.contenido {
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+#botones{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    font-size: 25px;
+    padding: 10px;
+    margin: 10px;
+}
