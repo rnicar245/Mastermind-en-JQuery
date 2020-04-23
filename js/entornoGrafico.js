@@ -3,7 +3,7 @@
  */
 
 $(function() {
-    let regExColor = /\/(\w+)\.png$/;
+    
     let contadorIntentos = 0;
 
     mastermind.init();
@@ -14,13 +14,7 @@ $(function() {
     }
     console.log(solucion);
 
-    $(".color").click(function(evento){
-        $(this).fadeOut(1).fadeIn("slow");
-        $('.seleccion:first .eleccion[src="img/vacio.png"]:first')
-            .prop("src", evento.target.src)
-            .fadeOut(1)
-            .fadeIn("slow");
-    });
+    $(".color").click(anadirColor());
 
     $(".eleccion").click(function(){
         $(this).prop("src", "img/vacio.png");
@@ -30,12 +24,7 @@ $(function() {
         location.reload();
     });
 
-    $("#cancelarFuncionalidad").click(function(){
-        $("#modal").css("display", "none");
-        $('.eleccion').off();
-        $("#contenedor").off();
-        $("#comprobar").off();
-    });
+    $("#cancelarFuncionalidad").click(cancelarFuncionalidad());
 
     $contenedor = $("#contenedor").clone();
 
@@ -43,23 +32,52 @@ $(function() {
         if ($('.seleccion:first .eleccion[src="img/vacio.png"]').length != 0)
             return; //Queda algún gris
 
-        let color;
-        let eleccionUsuario = [];
-        $(".seleccion:first .eleccion").each(function () {
-            eleccionUsuario.push(regExColor.exec($(this).prop("src"))[1]);
-            //eleccionUsuario.push(regExColor.exec($(this).prop("src"))[1]);
-        });
+        pistas = actualizarJuego(contadorIntentos);
+        gestionIntentos(pistas);
+    };
 
-        $("#intentos").html(++contadorIntentos);
-        let pistas = mastermind.comprobarCoincidencia(eleccionUsuario);
-        let contador = 0;
-        $(".pistas:first .pista").each(function () {
-            if (contador < pistas.length) {
-                $(this).prop("src", "img/" + pistas[contador] + ".png");
-                contador++;
-            }
-        });
-        $(".eleccion").off();
+    $("#comprobar").click(comprobar);
+});
+function cancelarFuncionalidad() {
+    return function () {
+        $("#modal").css("display", "none");
+        $('.eleccion').off();
+        $("#contenedor").off();
+        $("#comprobar").off();
+    };
+}
+
+function anadirColor() {
+    return function (evento) {
+        $(this).fadeOut(1).fadeIn("slow");
+        $('.seleccion:first .eleccion[src="img/vacio.png"]:first')
+            .prop("src", evento.target.src)
+            .fadeOut(1)
+            .fadeIn("slow");
+    };
+}
+
+function actualizarJuego(contadorIntentos){
+    let eleccionUsuario = [];
+    $(".seleccion:first .eleccion").each(function () {
+        eleccionUsuario.push(/\/(\w+)\.png$/.exec($(this).prop("src"))[1]);
+        //eleccionUsuario.push(regExColor.exec($(this).prop("src"))[1]);
+    });
+
+    $("#intentos").html(++contadorIntentos);
+    let pistas = mastermind.comprobarCoincidencia(eleccionUsuario);
+    let contador = 0;
+    $(".pistas:first .pista").each(function () {
+        if (contador < pistas.length) {
+            $(this).prop("src", "img/" + pistas[contador] + ".png");
+            contador++;
+        }
+    });
+    return pistas;
+}
+
+function gestionIntentos(pistas){
+    $(".eleccion").off();
         if (pistas.length === 4 && pistas.every((elementoActual) => elementoActual === "negro")) {
             $("#modal").css("display", "block");
         }else {
@@ -69,6 +87,4 @@ $(function() {
                 $(this).prop("src", "img/vacio.png");
             });
         }
-    };
-    $("#comprobar").click(comprobar);
-});
+}
